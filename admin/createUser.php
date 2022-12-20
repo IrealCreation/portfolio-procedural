@@ -21,6 +21,10 @@
                     <input class="form-control mt-3"type="text" name="prenom" placeholder="Votre prénom">
                     <input class="form-control mt-3" type="email" name="email" placeholder="Votre email">
                     <input class="form-control mt-3" type="password" name="password" placeholder="Votre mot de passe">
+                    <div class="mt-2">
+                        <label for="isAdmin">Administrateur :</label>
+                        <input type="checkbox" id="isAdmin" name="isAdmin" class="form-check-input"/>
+                    </div>
                     <button class="btn bg-primary text-light fw-bold mt-3" type="submit" name="soumettre">Enregistrer</button>
                 </form>
                 <?php
@@ -44,8 +48,15 @@
                         // encodage du mot de passe
                         $options = ['cost' => 12];
                         $password = password_hash(trim($_POST["password"]), PASSWORD_DEFAULT, $options);
-                        // on dit que 1 est admin pour le rôle
-                        $role = 1;
+                        
+                        if(isset($_POST["isAdmin"])) {
+                            // Si la case "isAdmin" est cochée...
+                            $role = 1;
+                        }
+                        else {
+                            // Si la case "isAdmin" n'est pas cochée...
+                            $role = 2;
+                        }
                         // 2- préparation de l'écriture SQL
                         $sql = "
                                 INSERT INTO user (
