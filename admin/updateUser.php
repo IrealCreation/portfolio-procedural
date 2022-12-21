@@ -14,8 +14,32 @@ if (!isset($_SESSION["role"], $_SESSION["isLog"], $_SESSION["prenom"]) || !$_SES
     exit;
 }
 
+// Choix de l'id de l'utilisateur à afficher
+$id = $_GET["id"];
+
+require("../core/connexion.php");
+
+$sql = "SELECT `id_user`, `nom`, `prenom`, `email`, `role`
+    FROM user
+    WHERE id_user = $id
+";
+
+$query = mysqli_query($connexion, $sql) or die(mysqli_error($connexion));
+
+$user = mysqli_fetch_assoc($query);
+
+/* TODO :
+    1) Afficher les informations de l'utilisateur sur la page
+    2) Afficher un utilisateur en fonction de son id quand on clique dessus depuis la liste des utilisateurs (listUsers.php)
+        Indices : paramètres GET dans l'URL
+*/
+
+echo "<pre>";
+var_dump($user);
+echo "</pre>";
+
 ?>
-<title>Console d'administration</title>
+<title>Modification de l'utilisateur</title>
 <?php
 include("../assets/inc/headerBack.php");
 
@@ -24,16 +48,7 @@ include("../assets/inc/headerBack.php");
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-4 mt-5">
-                <h6>Bienvenue <?= $_SESSION["prenom"] ?> sur le back-office</h6>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-3">
-                <form action="../core/userController.php" method="post">
-                    <input type="hidden" name="faire" value="log-out">
-                    <button class="btn bg-primary text-light fw-bold" type="submit" name="soumettre">Se
-                        deconnecter</button>
-                </form>
+                <h1>Détails de l'utilisateur</h1>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@
                                 <a class="nav-link active" aria-current="page" href="#">Accueil admin</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Gestion des utilisateurs</a>
+                                <a class="nav-link" href="http://localhost/sitePhpProcedural/admin/listUsers.php">Gestion des utilisateurs</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Gestion des competences</a>
