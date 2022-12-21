@@ -23,6 +23,9 @@
         case "update":
             updateUser();
         break;
+        case "delete-user":
+            deleteUser();
+        break;
     endswitch;
 
     // les différentes fonctions de notre controleur
@@ -107,7 +110,7 @@
         $nom = ucfirst(trim($_POST["nom"]));
         $prenom = ucfirst(trim($_POST["prenom"]));
         $email = strtolower(trim($_POST["email"]));
-        $password = trim($_POST["password"]);
+        $motdepasse = trim($_POST["password"]);
         $role = $_POST["role"];
         $id = $_POST["id"];
 
@@ -127,7 +130,7 @@
             header("Location:../admin/updateUser.php?id=" . $_POST["id"]);
             exit;
         }
-        if(strlen($password) < 1) {
+        if(strlen($motdepasse) < 1) {
             $_SESSION["message"] = "Le mot de passe doit avoir au moins 1 caractère";
             header("Location:../admin/updateUser.php?id=" . $_POST["id"]);
             exit;
@@ -139,7 +142,7 @@
         }
         // Encodage du mot de passe
         $options = ['cost' => 12];
-        $password = password_hash($password, PASSWORD_DEFAULT, $options);
+        $motdepasse = password_hash($motdepasse, PASSWORD_DEFAULT, $options);
 
         // Les données sont validées, préparons-nous à les envoyer en base de données
         require("connexion.php");
@@ -150,14 +153,19 @@
                 `prenom` = '$prenom', 
                 `email` = '$email', 
                 `role` = $role, 
-                `password` = '$password'
-            WHERE `id_user` = $id;
+                `password` = '$motdepasse'
+            WHERE `id_user` = $id
         ";
         // execution de la requète
         mysqli_query($connexion, $sql) or die(mysqli_error($connexion));
         // message d'info
         $_SESSION["message"] = "Les données ont bien été mises à jour";
         // redirection vers la liste des utilisateur
-        header("Location:../admin/listUsers.php);
+        header("Location:../admin/listUsers.php");
         exit;
+    }
+
+    function deleteUser() {
+        // récupération de la connexion
+        require("connexion.php");
     }

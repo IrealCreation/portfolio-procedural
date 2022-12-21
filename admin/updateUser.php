@@ -19,9 +19,9 @@ $id = $_GET["id"];
 
 require("../core/connexion.php");
 
-$sql = "SELECT `id_user`, `nom`, `prenom`, `email`, `role`
-    FROM user
-    WHERE id_user = $id
+$sql = "SELECT `id_user`, `nom`, `prenom`, `email`, `role` -- selection
+    FROM user -- de
+    WHERE id_user = $id -- où champs id_user = variable $id 
 ";
 
 $query = mysqli_query($connexion, $sql) or die(mysqli_error($connexion));
