@@ -11,13 +11,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Accueil admin</a>
+                                <a class="nav-link active" aria-current="page" href="http://localhost/sitePhpProcedural/admin/accueilAdmin.php"">Accueil admin</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="http://localhost/sitePhpProcedural/admin/listUsers.php">Gestion des utilisateurs</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Gestion des competences</a>
+                                <a class="nav-link" href="http://localhost/sitePhpProcedural/admin/listCompetences.php">Gestion des competences</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Gestion de la messagerie</a>
