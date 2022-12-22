@@ -168,4 +168,17 @@
     function deleteUser() {
         // récupération de la connexion
         require("connexion.php");
+        // récupération de l'id dans l'input caché du formulaire du
+        // bouton qui à le name="id"
+        $id = $_POST["id"];
+        // ecriture requête SQL
+        $sql = "DELETE FROM user -- suppression depuis la table user
+                WHERE id_user = '$id' -- où le champs id_user en bdd = id récupéré $id
+                ";
+        // execution de la requête avec la connexion
+        mysqli_query($connexion, $sql) or die(mysqli_error($connexion));
+        // message d'info
+        $_SESSION["message"] = "L'utilisateur a bien été supprimé !";
+        header("Location:../admin/listUsers.php");
+        exit;
     }

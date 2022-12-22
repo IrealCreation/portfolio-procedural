@@ -46,15 +46,19 @@ if (!isset($_SESSION["role"], $_SESSION["isLog"], $_SESSION["prenom"]) || !$_SES
             ?>
             <!-- création de 2 boutons : 1 avec un retour vers -->
             <h4>Attention vous êtes sur le point de supprimer le user <?php echo $user["prenom"] . ' ' . $user["nom"] ?></h4>
-            <a type="button" class="btn bg-success text-dark fw-bold" href="../admin/listUsers.php">Retour liste</a>
-            <form action="../core/userController.php" method="post">
-                <input type="hidden" name="faire" value="delete-user">
-                <input type="hidden" name="id" value="<?php echo $user["id_user"]; ?>">
-                <button type="submit" class="btn bg-danger text-dark fw-bold mt-3">Supprimer</button>
-            </form>
+            <div class="row justify-content-around">
+                <div class="col-3">
+                    <a type="button" class="btn bg-success text-dark fw-bold" href="../admin/listUsers.php">Retour liste</a>
+                </div>
+                <form class="col-3" action="../core/userController.php" method="post">
+                    <input type="hidden" name="faire" value="delete-user">
+                    <input type="hidden" name="id" value="<?php echo $user["id_user"]; ?>">
+                    <button type="submit" class="btn bg-danger text-dark fw-bold mt-3">Supprimer</button>
+                </form>
+            </div>
         </div>
     </div>
 </main>
 <?php
-include("../assets/inc/footerBack.php");
+    include("../assets/inc/footerBack.php");
 ?>
